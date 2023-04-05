@@ -4,9 +4,7 @@
     function editar($id) {
       $model = new Remedio();
       $remedio = $model->getById($id);
-      $modelUpa = new upa();
-      $upas = $modelUpa->read();
-      $this->view('frmRemedio', compact('remedio', 'upas'));
+      $this->view('frmRemedio', compact('remedio'));
     }
 
     function listar() {
@@ -18,20 +16,16 @@
     function novo() {
       $remedio = array();
       $remedio['id'] = 0; 
-      $remedio['nome'] = ""; 
-      $remedio['localizacao'] = "";
-      $remedio['afiliacao'] = 0;
-      $modelUpa = new Upa();
-      $upas = $modelUpa->read();
-      $this->view('frmRemedio', compact('remedio', 'upas'));
+      $remedio['nome'] = "";
+      $remedio['descricao'] = "";
+      $this->view('frmRemedio', compact('remedio'));
     }
 
     function salvar() {
       $remedio = array();
       $remedio['id'] = $_POST['id'];
       $remedio['nome'] = $_POST['nome'];
-      $remedio['localizacao'] = $_POST['localizacao'];
-      $remedio['afiliacao'] = $_POST['afiliacao'];
+      $remedio['descricao'] = $_POST['descricao'];
       $model = new Remedio();
       if ($remedio['id'] == 0) {
         $model->create($remedio);
@@ -44,6 +38,7 @@
     function excluir($id) {
       $model = new Remedio();
       $model->delete($id);
+      #$model->delete(); 
       $this->redirect('remedio/listar');
     }
   }

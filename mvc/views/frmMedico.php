@@ -1,6 +1,5 @@
 <h1>Cadastro de Medico</h1>
 <form action="<?php echo APP.'medico/salvar'; ?>" method="post">
-  <?php var_dump($medico['id']) ?>
   <input type="hidden" name="id" value="<?php echo $medico['id']; ?>">
   <div class="mb-3">
     <label for="nome" class="form-label">Nome</label>

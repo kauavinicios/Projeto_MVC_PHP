@@ -26,10 +26,12 @@ create table farmacia(id serial not null primary key,
                       );
 
 create table remedio(id serial not null primary key,
-                     nome varchar(50)
+                     nome varchar(50),
+                     descricao varchar(100)
                      );
 
-create table farmRemedio(idFarm int,
+create table farmRemedio(id serial not null primary key,
+                         idFarm int,
                          idRemedio int,
                          preco numeric(10,2),
                          qnt int,
@@ -72,11 +74,11 @@ insert into farmacia(nome, localizacao, afiliacao)
     ('iraci coelho', 'depois de logo la', 4),
     ('ultra farma', 'depois de logo ali', 4);
 
-insert into remedio(nome)
-    values('rivotril'),
-    ('dorflex'),
-    ('viagra'),
-    ('dipirona');
+insert into remedio(nome, descricao)
+    values('rivotril', 'bom pro estresse'),
+    ('dorflex', 'bom para dores no corpo'),
+    ('viagra', 'potencializa o soudado abatido'),
+    ('dipirona', 'ajuda com a dor de cabeça');
 
 insert into farmRemedio(idFarm, idRemedio, preco, qnt)
     values(1, 2, 30, 50),
