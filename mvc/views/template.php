@@ -95,6 +95,9 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="<?php echo APP.'farmRemedio/listar' ?>">Registro de Estoque</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="<?php echo APP.'receita/listar' ?>">Receitas</a>
+            </li>
 
           </ul>
 

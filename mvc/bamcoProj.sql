@@ -1,54 +1,59 @@
-create table upa(id serial not NULL primary key,
-                nome varchar(100),
-                localizacao varchar(100)
-                );
+CREATE TABLE upa (
+  id SERIAL NOT NULL PRIMARY KEY,
+  nome VARCHAR(100),
+  localizacao VARCHAR(100)
+);
 
-create table medico(id serial not null primary key,
-                    nome varchar(50),
-                    datanascimento date,
-                    crm varchar(14) unique,
-                    especialidade varchar(100),
-                    afiliacao int references upa(id)
-                    );
+CREATE TABLE medico (
+  id SERIAL NOT NULL PRIMARY KEY,
+  nome VARCHAR(50),
+  datanascimento DATE,
+  crm VARCHAR(14) UNIQUE,
+  especialidade VARCHAR(100),
+  afiliacao INT REFERENCES upa(id) ON DELETE CASCADE
+);
 
-create table enfermeira(id serial not null primary key,
-                       nome varchar(50),
-                       cpf varchar(11) unique,
-                       datanascimento date,
-                       posologia varchar(50),
-                       afiliacao int references upa(id)
-                       );
+CREATE TABLE enfermeira (
+  id SERIAL NOT NULL PRIMARY KEY,
+  nome VARCHAR(50),
+  cpf VARCHAR(11) UNIQUE,
+  datanascimento DATE,
+  posologia VARCHAR(50),
+  afiliacao INT REFERENCES upa(id) ON DELETE CASCADE
+);
 
-create table farmacia(id serial not null primary key,
-                      nome varchar(50),
-                      localizacao varchar(50),
-                      afiliacao int references upa(id)
-                      );
+CREATE TABLE farmacia (
+  id SERIAL NOT NULL PRIMARY KEY,
+  nome VARCHAR(50),
+  localizacao VARCHAR(50),
+  afiliacao INT REFERENCES upa(id) ON DELETE CASCADE
+);
 
-create table remedio(id serial not null primary key,
-                     nome varchar(50),
-                     descricao varchar(100)
-                     );
+CREATE TABLE remedio (
+  id SERIAL NOT NULL PRIMARY KEY,
+  nome VARCHAR(50),
+  descricao VARCHAR(100)
+);
 
-create table farmRemedio(id serial not null primary key,
-                         idFarm int,
-                         idRemedio int,
-                         preco numeric(10,2),
-                         qnt int,
-                         FOREIGN KEY(idFarm) REFERENCES farmacia(id),
-                         FOREIGN KEY(idRemedio) REFERENCES remedio(id)
-                         );
+CREATE TABLE farmRemedio (
+  id SERIAL NOT NULL PRIMARY KEY,
+  idFarm INT,
+  idRemedio INT,
+  preco NUMERIC(10,2),
+  qnt INT,
+  FOREIGN KEY(idFarm) REFERENCES farmacia(id) ON DELETE CASCADE,
+  FOREIGN KEY(idRemedio) REFERENCES remedio(id) ON DELETE CASCADE
+);
 
-create table receita(id serial not null primary key, 
-                     descricao varchar(300),
-                     qnt int,
-                     medicoId int,
-                     enfermeiraId int,
-                     remedioId int,
-                     FOREIGN KEY(medicoId) REFERENCES medico(id),
-                     FOREIGN KEY(enfermeiraId) REFERENCES enfermeira(id),
-                     FOREIGN KEY(remedioId) REFERENCES remedio(id)
-                     );
+CREATE TABLE receita (
+  id SERIAL NOT NULL PRIMARY KEY, 
+  descricao VARCHAR(300),
+  qnt INT,
+  medicoId INT REFERENCES medico(id) ON DELETE CASCADE,
+  enfermeiraId INT REFERENCES enfermeira(id) ON DELETE CASCADE,
+  remedioId INT REFERENCES remedio(id) ON DELETE CASCADE
+);
+
 
 insert into upa(nome, localizacao)
     values('upa1', 'logo ali'),
