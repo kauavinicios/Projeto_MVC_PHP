@@ -65,18 +65,39 @@
       body {
         min-height: 75rem;
         padding-top: 4.5rem;
+        color: #222222;
+        background: #00916e;
+      }
+      .menu{
+        background: #00916e;
+      }
+      .menu a:hover{
+        background: #220ce0;
+        
+
+      }
+      .menu a{
+        background: #226ce0;
+        padding: 8px 22px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: auto 10px;
+        border-radius: 50px;
       }
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top menu container">
       <div class="container-fluid">
-        <a class="navbar-brand" href="<?php echo APP; ?>">News</a>
+        <!-- Adicionando o link para a página inicial -->
+        <a class="navbar-brand" href="<?php echo APP; ?>">Inicio</a>
+        <!-- Adicionando o botão para a responsividade da navbar -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <!-- Adicionando links para outras páginas -->
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="<?php echo APP.'upa/listar' ?>">Upas</a>
             </li>
@@ -107,6 +128,7 @@
     <main class="container">
       <div class="bg-light p-5 rounded">
         <?php
+          // Incluindo o arquivo PHP solicitado pela aplicação
           require_once $arquivo;
         ?>
       </div>
